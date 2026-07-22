@@ -342,106 +342,20 @@
         position: relative;
         z-index: 2;
         text-align: center;
-        padding: 46px 0 14px;
+        padding: 26px 0 6px;
       }
       .logo-title {
-        display: block;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
         position: relative;
       }
-
-      /* small ornament above the title */
-      .crest {
-        display: block;
-        margin: 0 auto 10px;
-        width: 46px;
-        opacity: 0.75;
+      .logo-title .balloon {
+        font-size: 34px;
+        animation: bob 4s ease-in-out infinite;
       }
-      .crest svg {
-        width: 100%;
-        height: auto;
-        display: block;
-        animation: crestGlow 6s ease-in-out infinite;
-      }
-      @keyframes crestGlow {
-        0%,
-        100% {
-          opacity: 0.7;
-          transform: translateY(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(-3px);
-        }
-      }
-
-      /* "Pranika's" in script */
-      .eyebrow {
-        margin: 0;
-        font-family: "Caveat", cursive;
-        font-weight: 700;
-        font-size: clamp(25px, 3.6vw, 34px);
-        color: #c2799a;
-        letter-spacing: 0.4px;
-        line-height: 1;
-      }
-
-      /* main wordmark — one harmonious gradient, no hard shadow */
-      .logo-title h1 {
-        margin: 2px 0 0;
-        font-family: "Baloo 2", cursive;
-        font-weight: 600;
-        font-size: clamp(36px, 6.6vw, 62px);
-        line-height: 1.06;
-        letter-spacing: 0.6px;
-        background: linear-gradient(
-          100deg,
-          #7c5fa8 0%,
-          #a2648f 42%,
-          #c47f84 72%,
-          #cf9079 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        filter: drop-shadow(0 3px 10px rgba(150, 95, 130, 0.16));
-      }
-
-      /* hairline divider with a small heart */
-      .title-rule {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 13px;
-        max-width: 340px;
-        margin: 15px auto 0;
-        padding: 0 20px;
-      }
-      .title-rule .ln {
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          #e6c6d2 35%,
-          #e6c6d2 65%,
-          transparent
-        );
-      }
-      .title-rule svg {
-        width: 13px;
-        height: 13px;
-        flex: none;
-        opacity: 0.8;
-      }
-
-      .subtitle {
-        font-family: "Caveat", cursive;
-        font-size: clamp(18px, 2.4vw, 22px);
-        color: var(--ink-soft);
-        margin-top: 10px;
-        letter-spacing: 0.3px;
-        opacity: 0.92;
+      .logo-title .balloon.b2 {
+        animation-delay: -2s;
       }
       @keyframes bob {
         0%,
@@ -451,6 +365,33 @@
         50% {
           transform: translateY(-9px) rotate(4deg);
         }
+      }
+      .logo-title h1 {
+        margin: 0;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(30px, 6vw, 52px);
+        color: #6a5cc4;
+        text-shadow:
+          2px 3px 0 #fff,
+          4px 6px 0 rgba(154, 124, 228, 0.25);
+      }
+      .logo-title h1 .a {
+        color: var(--blush-d);
+      }
+      .logo-title h1 .b {
+        color: var(--sky-d);
+      }
+      .logo-title h1 .c {
+        color: var(--peach-d);
+      }
+      .logo-title h1 .d {
+        color: var(--mint-d);
+      }
+      .subtitle {
+        font-family: "Caveat", cursive;
+        font-size: 24px;
+        color: var(--ink-soft);
+        margin-top: 2px;
       }
 
       nav.mainnav {
@@ -1471,95 +1412,9 @@
           grid-template-columns: 1fr;
         }
       }
-
-      /* ============ SCROLL CHOREOGRAPHY ============ */
-      /* long, decelerating curve — fast to start, long graceful settle */
-      :root {
-        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translate3d(0, 34px, 0);
-        transition:
-          opacity 1s var(--ease-out-expo),
-          transform 1.05s var(--ease-out-expo),
-          filter 1s var(--ease-out-expo);
-        filter: blur(4px);
-        will-change: transform, opacity;
-      }
-      .reveal.rv-soft {
-        transform: translate3d(0, 18px, 0);
-        filter: blur(2px);
-      }
-      .reveal.rv-scale {
-        transform: translate3d(0, 28px, 0) scale(0.955);
-      }
-      .reveal.rv-left {
-        transform: translate3d(-38px, 16px, 0);
-      }
-      .reveal.rv-right {
-        transform: translate3d(38px, 16px, 0);
-      }
-      .reveal.is-in {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-        filter: blur(0);
-      }
-      /* release the compositor hint once the animation is done */
-      .reveal.is-done {
-        will-change: auto;
-      }
-
-      /* nav gains presence once you leave the top */
-      nav.mainnav {
-        transition:
-          box-shadow 0.5s var(--ease-out-expo),
-          background 0.5s var(--ease-out-expo);
-      }
-      nav.mainnav.stuck {
-        background: rgba(255, 246, 247, 0.92);
-        box-shadow: 0 12px 34px rgba(150, 100, 130, 0.14);
-      }
-
-      /* hairline reading-progress bar */
-      #sprog {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 2.5px;
-        width: 100%;
-        z-index: 60;
-        transform: scaleX(0);
-        transform-origin: 0 50%;
-        background: linear-gradient(90deg, #c88fa8, #a2648f, #cf9079);
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-      #sprog.on {
-        opacity: 0.9;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .reveal,
-        .reveal.rv-soft,
-        .reveal.rv-scale,
-        .reveal.rv-left,
-        .reveal.rv-right {
-          opacity: 1 !important;
-          transform: none !important;
-          filter: none !important;
-          transition: none !important;
-        }
-        #sprog {
-          display: none;
-        }
-      }
     </style>
   </head>
   <body>
-    <div id="sprog" aria-hidden="true"></div>
     <div class="decor" aria-hidden="true">
       <span class="aura a1"></span>
       <span class="aura a2"></span>
@@ -1620,42 +1475,18 @@
     <div class="shell">
       <!-- Header -->
       <header class="top">
-      <div class="logo-title">
-        <span class="crest">
-          <svg viewBox="0 0 46 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M23 1.6l1.5 4.1 4.1 1.5-4.1 1.5L23 12.8l-1.5-4.1L17.4 7.2l4.1-1.5z"
-              fill="#c88fa8"
-            />
-            <path
-              d="M9.5 6.4l.85 2.3 2.3.85-2.3.85-.85 2.3-.85-2.3L6.35 9.55l2.3-.85z"
-              fill="#d7a9bd"
-              opacity=".8"
-            />
-            <path
-              d="M36.5 6.4l.85 2.3 2.3.85-2.3.85-.85 2.3-.85-2.3-2.3-.85 2.3-.85z"
-              fill="#d7a9bd"
-              opacity=".8"
-            />
-          </svg>
-        </span>
-        <p class="eyebrow">Pranika&rsquo;s</p>
-        <h1>Happy Place</h1>
-        <div class="title-rule" aria-hidden="true">
-          <span class="ln"></span>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 20.5S3.8 15.3 3.8 9.6A4.6 4.6 0 0 1 12 6.9a4.6 4.6 0 0 1 8.2 2.7c0 5.7-8.2 10.9-8.2 10.9z"
-              fill="#dba3b6"
-            />
-          </svg>
-          <span class="ln"></span>
+        <div class="logo-title">
+          <span class="balloon">🎈</span>
+          <h1>
+            <span class="a">P</span>ranika<span class="b">'s</span>
+            <span class="c">Happy</span> <span class="d">Place!</span>
+          </h1>
+          <span class="balloon b2">🎈</span>
         </div>
-        <p class="subtitle">
+        <div class="subtitle">
           a little scrapbook of giggles, art &amp; big adventures
-        </p>
-      </div>
-    </header>
+        </div>
+      </header>
 
       <!-- Nav -->
       <nav class="mainnav" id="nav">
@@ -2432,140 +2263,6 @@
             if (el) obs.observe(el);
           });
         }
-      })();
-    </script>
-
-    <script>
-      /* ===== Apple-style scroll choreography ===== */
-      (function () {
-        "use strict";
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (reduce || !("IntersectionObserver" in window)) return;
-
-        /* which elements animate, and how they enter */
-        var GROUPS = [
-          [".hero-photo", "rv-scale"],
-          [".profilecard", "rv-right"],
-          [".sec-title", "rv-soft"],
-          [".sec-sub", "rv-soft"],
-          [".agebadge", "rv-scale"],
-          [".nowtag", "rv-soft"],
-          [".mrow.left .mcard", "rv-left"],
-          [".mrow.right .mcard", "rv-right"],
-          [".album", ""],
-          [".art", "rv-scale"],
-          [".voice", ""],
-          [".about-photo", "rv-left"],
-          [".about-card", "rv-right"],
-          [".guest-wrap", "rv-soft"],
-          [".board", "rv-soft"],
-          ["footer", "rv-soft"],
-        ];
-
-        var counters = new Map(); // stagger resets per container
-        GROUPS.forEach(function (g) {
-          document.querySelectorAll(g[0]).forEach(function (el) {
-            if (el.classList.contains("reveal")) return;
-            el.classList.add("reveal");
-            if (g[1]) el.classList.add(g[1]);
-            var p = el.parentElement;
-            var i = counters.get(p) || 0;
-            counters.set(p, i + 1);
-            if (i > 0) el.style.transitionDelay = Math.min(i, 5) * 75 + "ms";
-          });
-        });
-
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) show(e.target);
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-        );
-
-        /* pending = anything not yet shown. The scroll loop below is a safety
-           net: if the page jumps (nav link, anchor, fast flick) an element can
-           be skipped by the observer, and it must never stay invisible. */
-        var pending = [].slice.call(document.querySelectorAll(".reveal"));
-        pending.forEach(function (el) {
-          io.observe(el);
-        });
-
-        function show(el) {
-          if (el.classList.contains("is-in")) return;
-          el.classList.add("is-in");
-          io.unobserve(el);
-          var i = pending.indexOf(el);
-          if (i > -1) pending.splice(i, 1);
-          setTimeout(function () {
-            el.classList.add("is-done");
-            el.style.transitionDelay = "";
-          }, 1500);
-        }
-
-        function sweep() {
-          if (!pending.length) return;
-          var vh = window.innerHeight;
-          for (var i = pending.length - 1; i >= 0; i--) {
-            var r = pending[i].getBoundingClientRect();
-            if (r.top < vh * 0.92) show(pending[i]); // in view or already passed
-          }
-        }
-
-        /* progress bar + sticky nav + gentle hero recede, all in one rAF loop */
-        var prog = document.getElementById("sprog");
-        var nav = document.querySelector("nav.mainnav");
-        var hero = document.querySelector(".hero");
-        var wide = window.innerWidth > 820;
-        var ticking = false;
-
-        function frame() {
-          var y = window.scrollY || 0;
-          var max = document.documentElement.scrollHeight - window.innerHeight;
-
-          sweep(); // guarantee nothing is left hidden
-
-          if (prog) {
-            prog.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
-            prog.classList.toggle("on", y > 60);
-          }
-          if (nav) nav.classList.toggle("stuck", y > 40);
-
-          /* hero drifts slightly slower than the page and softly recedes */
-          if (hero && wide) {
-            if (y < 1000) {
-              hero.style.transform = "translate3d(0," + y * 0.07 + "px,0)";
-              hero.style.opacity = String(1 - Math.min(y / 1300, 0.4));
-            }
-          }
-          ticking = false;
-        }
-
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (!ticking) {
-              ticking = true;
-              requestAnimationFrame(frame);
-            }
-          },
-          { passive: true }
-        );
-        window.addEventListener("resize", function () {
-          wide = window.innerWidth > 820;
-          if (!wide && hero) {
-            hero.style.transform = "";
-            hero.style.opacity = "";
-          }
-          sweep();
-        });
-        /* images finishing loading can shift layout — re-check afterwards */
-        window.addEventListener("load", function () {
-          sweep();
-          setTimeout(sweep, 600);
-        });
-        frame();
       })();
     </script>
   </body>
