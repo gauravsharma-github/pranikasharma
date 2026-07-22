@@ -784,28 +784,6 @@
         );
         border-radius: 5px;
         opacity: 0.6;
-        /* soften both ends so the line doesn't stop abruptly */
-        -webkit-mask-image: linear-gradient(
-          180deg,
-          transparent 0,
-          #000 4%,
-          #000 90%,
-          transparent 100%
-        );
-        mask-image: linear-gradient(
-          180deg,
-          transparent 0,
-          #000 4%,
-          #000 90%,
-          transparent 100%
-        );
-      }
-      .timeline-outro {
-        text-align: center;
-        font-family: "Caveat", cursive;
-        font-size: 22px;
-        color: var(--ink-faint);
-        margin: 22px 0 0;
       }
       .agebadge {
         position: relative;
@@ -906,12 +884,8 @@
         justify-self: start;
         transform: rotate(1.2deg);
       }
-      /* the dot must always sit in the centre column, on the dashed line.
-         (In .mrow.right the card is column 3, so without this the dot
-         auto-places into column 1 and drifts off to the left.) */
-      .mrow .node {
+      .mrow.right .connector {
         grid-column: 2;
-        grid-row: 1;
       }
       .mthumb {
         width: 58px;
@@ -1875,8 +1849,18 @@
           <div class="agebadge a4">
             <span class="em">🎈</span><span class="lb">Age 4</span>
           </div>
+          <p
+            style="
+              text-align: center;
+              font-family: &quot;Caveat&quot;, cursive;
+              font-size: 22px;
+              color: var(--ink-faint);
+              margin: 6px 0 0;
+            "
+          >
+            more adventures coming soon…
+          </p>
         </div>
-        <p class="timeline-outro">more adventures coming soon…</p>
       </section>
 
       <!-- ===== PHOTO ADVENTURES (Gallery) ===== -->
