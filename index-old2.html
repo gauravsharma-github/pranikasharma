@@ -401,28 +401,13 @@
         transform: rotate(-2.5deg);
       }
       .polaroid .pic {
-        aspect-ratio: 4/5;
+        aspect-ratio: 4/3;
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 90px;
         background: linear-gradient(135deg, #ffd6a5, #ff9a8b);
-        overflow: hidden;
-      }
-      /* Drop-in photos: any <img> inside a placeholder fills its frame neatly.
-         Tweak object-position (e.g. "center 20%") to re-frame a photo. */
-      .pic img,
-      .mthumb img,
-      .pc-avatar img,
-      .canvas img,
-      .album .bg img,
-      .lb .big img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: inherit;
       }
       .polaroid .cap {
         position: absolute;
@@ -1357,22 +1342,14 @@
           <div class="hero-photo">
             <div class="polaroid">
               <div class="tape"></div>
-              <div class="pic">
-                <img
-                  src="photos/pranika-hero.jpg"
-                  alt="Pranika smiling"
-                  style="object-position: center 18%"
-                />
-              </div>
+              <div class="pic">🧒</div>
               <div class="cap">Pranika is 3! 🎉</div>
             </div>
             <span class="sticker">⭐</span>
           </div>
           <div class="profilecard">
             <div class="pc-head">
-              <div class="pc-avatar">
-                <img src="photos/pranika-avatar.jpg" alt="Pranika" />
-              </div>
+              <div class="pc-avatar">P</div>
               <div>
                 <div class="n">Hello, I'm Pranika!</div>
                 <div class="age">three whole years old</div>
@@ -1434,14 +1411,7 @@
           <div class="mrow right">
             <div class="node"></div>
             <div class="mcard">
-              <div class="mthumb">
-                <img
-                  src="photos/music-time.jpg"
-                  alt="Pranika wearing headphones"
-                  loading="lazy"
-                  style="object-position: center 22%"
-                />
-              </div>
+              <div class="mthumb" style="background: #fff3c4">💬</div>
               <div>
                 <div class="mtype">First words</div>
                 <div class="mt">"Mama" &amp; "more!"</div>
@@ -1468,13 +1438,7 @@
           <div class="mrow right">
             <div class="node"></div>
             <div class="mcard">
-              <div class="mthumb">
-                <img
-                  src="photos/pranika-avatar.jpg"
-                  alt="Pranika smiling"
-                  loading="lazy"
-                />
-              </div>
+              <div class="mthumb" style="background: #e6dcff">🏫</div>
               <div>
                 <div class="mtype">Video</div>
                 <div class="mt">Started preschool</div>
@@ -1578,15 +1542,8 @@
           <div class="about-photo">
             <div class="polaroid">
               <div class="tape t2"></div>
-              <div class="pic">
-                <img
-                  src="photos/pranika-about.jpg"
-                  alt="Pranika with her mum"
-                  loading="lazy"
-                  style="object-position: center 35%"
-                />
-              </div>
-              <div class="cap">me &amp; mumma 💛</div>
+              <div class="pic">🌈</div>
+              <div class="cap">that's me!</div>
             </div>
           </div>
           <div class="about-card">
@@ -1707,76 +1664,76 @@
         // ----- Albums (Photo Adventures) -----
         var ALBUMS = [
           {
-            img: "photos/festival.jpg",
-            pos: "center 20%",
-            emoji: "\u2728",
-            bg: "linear-gradient(135deg,#f6a8bb,#ec8398)",
-            title: "Festival Days!",
-            sub: "all dressed up",
-          },
-          {
-            img: "photos/family-time.jpg",
-            pos: "center 25%",
-            emoji: "\uD83D\uDC9B",
+            emoji: "🦁",
             bg: "linear-gradient(135deg,#ffd98a,#f2984d)",
-            title: "Family Time!",
-            sub: "with my favourite people",
-          },
-          {
-            img: "photos/music-time.jpg",
-            pos: "center 22%",
-            emoji: "\uD83C\uDFB6",
-            bg: "linear-gradient(135deg,#b8a9ef,#6d5fc7)",
-            title: "Music &amp; Me!",
-            sub: "headphones on, world off",
-          },
-          {
-            emoji: "\uD83D\uDEDD",
-            bg: "linear-gradient(135deg,#a7d8f0,#54b0e6)",
-            title: "Playpark Fun!",
-            sub: "swings &amp; slides",
-          },
-          {
-            emoji: "\uD83E\uDD81",
-            bg: "linear-gradient(135deg,#b6e8c9,#54c489)",
             title: "Zoo Day!",
             sub: "animals everywhere",
+            count: 8,
           },
           {
-            emoji: "\uD83C\uDF82",
+            emoji: "🛝",
+            bg: "linear-gradient(135deg,#a7d8f0,#54b0e6)",
+            title: "Playpark Fun!",
+            sub: "swings & slides",
+            count: 12,
+          },
+          {
+            emoji: "🏖️",
+            bg: "linear-gradient(135deg,#b6e8c9,#54c489)",
+            title: "Summer Days!",
+            sub: "sunshine & splashes",
+            count: 15,
+          },
+          {
+            emoji: "🎂",
             bg: "linear-gradient(135deg,#ffc2d6,#ff8cb0)",
             title: "Birthday Bash!",
             sub: "turning three",
+            count: 20,
+          },
+          {
+            emoji: "🎄",
+            bg: "linear-gradient(135deg,#d6c6f2,#9a7ce4)",
+            title: "Festival Fun!",
+            sub: "lights & sweets",
+            count: 10,
+          },
+          {
+            emoji: "🐘",
+            bg: "linear-gradient(135deg,#ffd0b0,#ff9866)",
+            title: "Day Out!",
+            sub: "big adventures",
+            count: 9,
           },
         ];
         var albumsEl = document.getElementById("albums");
         ALBUMS.forEach(function (a) {
           var b = document.createElement("button");
           b.className = "album";
-          // real <img> so the browser can lazy-load it
-          var inner = a.img
-            ? '<div class="bg"><img src="' +
-              a.img +
-              '" alt="' +
-              a.title +
-              '" loading="lazy" style="object-position:' +
-              (a.pos || "center") +
-              '"></div>'
-            : '<div class="bg" style="background:' + a.bg + '">' + a.emoji + "</div>";
           b.innerHTML =
-            inner +
-            (a.count ? '<span class="count">📷 ' + a.count + "</span>" : "") +
+            '<div class="bg" style="background:' +
+            a.bg +
+            '">' +
+            (a.img ? "" : a.emoji) +
+            "</div>" +
+            '<span class="count">📷 ' +
+            a.count +
+            "</span>" +
             '<div class="lbl"><b>' +
             a.title +
             "</b><span>" +
             a.sub +
             "</span></div>";
+          if (a.img) {
+            b.querySelector(".bg").style.background =
+              'center/cover no-repeat url("' + a.img + '")';
+          }
           b.addEventListener("click", function () {
             openLb(
               a.emoji,
               a.bg,
               a.title,
-              a.count ? a.sub + " · " + a.count + " photos" : a.sub,
+              a.sub + " · " + a.count + " photos",
               a.img,
             );
           });
@@ -1851,9 +1808,7 @@
           big = document.getElementById("lbBig");
         function openLb(emoji, bg, t, s, img) {
           if (img) {
-            // "contain" so the whole photo is visible, not cropped
-            big.style.background =
-              '#f4f2fb center/contain no-repeat url("' + img + '")';
+            big.style.background = 'center/cover no-repeat url("' + img + '")';
             big.textContent = "";
           } else {
             big.style.background = bg;
